@@ -10,6 +10,10 @@ class Gear
     ratio * @wheel.diameter
   end
 
+  def diameter
+    @wheel.diameter
+  end
+
   def ratio
     chainring / cog.to_f
   end

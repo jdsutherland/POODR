@@ -11,6 +11,10 @@ class Gear
     ratio * @wheel.diameter
   end
 
+  def diameter
+    wheel.diameter
+  end
+
   def wheel
     @wheel ||= Wheel.new(rim, tire)
   end
@@ -18,6 +22,7 @@ class Gear
   def ratio
     chainring / cog.to_f
   end
+
 end
 
 class Wheel

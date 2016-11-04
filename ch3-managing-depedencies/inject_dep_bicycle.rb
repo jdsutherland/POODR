@@ -7,11 +7,11 @@ class Gear
   end
 
   def gear_inches
-    ratio * @wheel.diameter
+    ratio * wheel.diameter
   end
 
   def diameter
-    @wheel.diameter
+    wheel.diameter
   end
 
   def ratio

@@ -16,16 +16,19 @@ class Bicycle
       "This #{self.class} cannot respond to:"
   end
 
+  def spares
+    {
+      chain:     chain,
+      tire_size: tire_size
+    }
+  end
 end
 
 class RoadBike < Bicycle
-  attr_reader :style, :tape_color, :front_shock, :rear_shock
+  attr_reader :tape_color
 
   def initialize(*args)
-    @style = args[:style]
     @tape_color = args[:tape_color]
-    @front_shock = args[:front_shock]
-    @rear_shock = args[:rear_shock]
     super(args)
   end
 
@@ -33,21 +36,8 @@ class RoadBike < Bicycle
     '23'
   end
 
-  # checking style starts down a slippery slope
   def spares
-    if style == :road
-      {
-        chain:      '10 speed',
-        tire_size:  '23', # millimeters
-        tape_color: tape_color
-      }
-    else
-      {
-        chain:      '10 speed',
-        tire_size:  '2.1', # inches
-        rear_shock: rear_shock
-      }
-    end
+    super.merge(tape_color: tape_color)
   end
 end
 
@@ -69,18 +59,3 @@ class MountainBike < Bicycle
     super.merge(rear_shock: rear_shock)
   end
 end
-
-road_bike = RoadBike.new(
-  size:       'M',
-  tape_color: 'red'
-)
-
-road_bike.tire_size     # => '23'
-road_bike.chain         # => "10-speed"
-mountain_bike = MountainBike.new(
-  size:        'S',
-  front_shock: 'Manitou',
-  rear_shock:  'Fox'
-)
-mountain_bike.tire_size # => '2.1'
-road_bike.chain         # => "10-speed"

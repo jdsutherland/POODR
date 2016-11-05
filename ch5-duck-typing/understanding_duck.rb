@@ -2,27 +2,29 @@ class Trip
   attr_reader :bicycles, :customers, :vehicle
 
   def prepare(preparers)
-    preparers.each {|preparer|
-      case preparer
-      when Mechanic
-        preparer.prepare_bicycles(bicycles)
-      when TripCoordinator
-        preparer.buy_food(customers)
-      when Driver
-        preparer.gas_up(vehicle)
-        preparer.fill_water_tank(vehicle)
-      end
-    }
+    preparers.each do |preparer|
+      preparer.prepare_trip(self)
+    end
   end
 end
 
 class TripCoordinator
+  def prepare_trip(trip)
+    buy_food(trip.customers)
+  end
+
   def buy_food(customers)
     # ...
   end
 end
 
 class Driver
+  def prepare_trip(trip)
+    vehicle = trip.vehicle
+    gas_up(vehicle)
+    fill_water_tank(vehicle)
+  end
+
   def gas_up(vehicle)
     # ...
   end
@@ -32,9 +34,13 @@ class Driver
   end
 end
 
-# if you happen to pass an instance of *this* class,
-# it works
 class Mechanic
+  def prepare_trip(trip)
+    trip.bicycles.each do |bicycle|
+      prepare_bicycles(trip.bicycle)
+    end
+  end
+
   def prepare_bicycles(bicycles)
     bicycles.each {|bicycle| prepare_bicycle(bicycle)}
   end

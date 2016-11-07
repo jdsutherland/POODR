@@ -1,4 +1,6 @@
 class Bicycle
+  includes Schedulable
+
   attr_reader :size, :chain, :tire_size
 
   def initalize(*args)
@@ -11,6 +13,10 @@ class Bicycle
 
   def post_initialize(args)
     nil
+  end
+
+  def lead_days
+    1
   end
 
   def default_chain

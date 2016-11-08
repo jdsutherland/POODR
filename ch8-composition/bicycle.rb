@@ -6,10 +6,6 @@ class Bicycle
     @parts = args[:parts]
   end
 
-  def post_initialize(args)
-    nil
-  end
-
   def spares
     parts.spares
   end

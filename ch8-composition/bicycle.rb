@@ -1,7 +1,10 @@
+require_relative 'part'
+require_relative 'parts'
+
 class Bicycle
   attr_reader :size, :parts
 
-  def initalize(*args)
+  def initialize(args={})
     @size  = args[:size]
     @parts = args[:parts]
   end

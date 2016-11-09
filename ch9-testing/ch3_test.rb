@@ -20,7 +20,7 @@ end
 
 class GearTest < MiniTest::Unit::TestCase
   def setup
-    @observer = Minitest::Mock.new
+    @observer = MiniTest::Mock.new
 
     @gear = Gear.new(
       chainring: 52,

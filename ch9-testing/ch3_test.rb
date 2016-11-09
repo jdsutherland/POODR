@@ -53,8 +53,15 @@ class GearTest < MiniTest::Unit::TestCase
 end
 
 class DiameterDouble
-  def diameter
+  def width
     10
   end
 end
 
+class DiameterDoubleTest < MiniTest::Unit::TestCase
+  include DiameterizableInterfaceTest
+
+  def setup
+    @object = DiameterDouble.new
+  end
+end

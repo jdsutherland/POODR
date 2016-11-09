@@ -1,7 +1,7 @@
 class Bicycle
   attr_reader :size, :chain, :tire_size
 
-  def initalize(*args)
+  def initialize(args={})
     @size      = args[:size]
     @chain     = args[:chain]     || default_chain
     @tire_size = args[:tire_size] || default_tire_size

@@ -10,6 +10,10 @@ class BicycleTest < MiniTest::Unit::TestCase
   def setup
     @bike = @object = Bicycle.new(tire_size: 0)
   end
+
+  def test_forces_subclasses_to_implement_default_tire_size
+    assert_raises(NotImplementedError) { @bike.default_tire_size }
+  end
 end
 
 class RoadBikeTest < MiniTest::Unit::TestCase
